@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>Loan Approval System</title>
+
+    <style>
+      .form-section {
+        background-color: #f9fafb;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-label {
+        font-weight: bold;
+      }
+
+      .btn-primary {
+        background-color: #4f46e5;
+        border-color: #4f46e5;
+      }
+      .prediction-box {
+            background-color: #4CAF50; /* Custom background color for prediction box */
+            color: #fff; /* Custom text color for prediction box */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Padding inside the box */
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Box shadow */
+            margin-bottom: 20px; /* Bottom margin */
+        }
+        .prediction-text {
+            font-size: 24px; /* Custom font size for prediction text */
+            font-weight: bold; /* Bold font weight */
+            text-align: center; /* Center align text */
+        }
+      .btn-primary:hover {
+        background-color: #4338ca;
+        border-color: #4338ca;
+      }
+
+      .header-title {
+        color: #4f46e5;
+      }
+      #output {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    align-items: center; /* centers vertically */
+    margin-top: -130px;
+    height: 80vh; /* ensures the container takes the full viewport height for vertical centering */
+     }
+
+      #box{
+        margin-top: -80px;
+      }
+      #surag_header{
+        margin-top: -89px;
+      }
+      #cont{
+        width: 600px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100" id="surag_header">
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 header-title">Loan Approval System</h1>
+        </div>
+
+        <div class="form-section" id="box">
+          <form action='/predict' method='POST'>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" id="gender" name="gender" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select gender --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="married" class="form-label">Married Status</label>
+                <select class="form-select" id="married" name="married" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select married status --</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="dependents" class="form-label">Dependents</label>
+                <select class="form-select" id="dependents" name="dependents" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select dependents --</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3+">3+</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="education" class="form-label">Education</label>
+                <select class="form-select" id="education" name="education" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select education --</option>
+                  <option value="Graduate">Graduate</option>
+                  <option value="Not Graduate">Not Graduate</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="employed" class="form-label">Self Employed</label>
+                <select class="form-select" id="employed" name="employed" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select self employed --</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="credit" class="form-label">Credit History</label>
+                <select class="form-select" id="credit" name="credit" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select credit history --</option>
+                  <option value="1.0">0-1</option>
+                  <option value="0.0">1-2</option>
+                  <option value="0.842199">2+</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="area" class="form-label">Property Area</label>
+                <select class="form-select" id="area" name="area" aria-label="Default select example" required>
+                  <option value="" selected disabled>-- select property area --</option>
+                  <option value="Semiurban">Semiurban</option>
+                  <option value="Urban">Urban</option>
+                  <option value="Rural">Rural</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="ApplicantIncome" class="form-label">Applicant Income</label>
+                <input type="number" class="form-control" id="ApplicantIncome" name="ApplicantIncome" placeholder="Applicant Income" required>
+              </div>
+              <div class="col-md-4">
+                <label for="CoapplicantIncome" class="form-label">Coapplicant Income</label>
+                <input type="number" class="form-control" id="CoapplicantIncome" name="CoapplicantIncome" placeholder="Coapplicant Income" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="LoanAmount" class="form-label">Loan Amount</label>
+                <input type="number" class="form-control" id="LoanAmount" name="LoanAmount" placeholder="Loan Amount" required>
+              </div>
+              <div class="col-md-4">
+                <label for="Loan_Amount_Term" class="form-label">Loan Amount Term</label>
+                <input type="number" class="form-control" id="Loan_Amount_Term" name="Loan_Amount_Term" placeholder="Loan Amount Term" required>
+              </div>
+            </div>
+            <div style="text-align: center;">
+              <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="container px-5 py-24 mx-auto", id="output">
+      <div class="card prediction-box", id="cont">
+          <div class="flex flex-col text-center w-full mb-20">
+              <h2 class="prediction-text">{{prediction_text}}</h2>
+          </div>
+      </div>
+  </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
