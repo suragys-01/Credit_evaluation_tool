@@ -20,7 +20,7 @@ The Loan Approval System is a web-based application designed to automate the pro
 - **Backend:** Python, Flask
 - **Database:** MySQL / PostgreSQL
 - **APIs:** Integration with external services for credit score validation
-- **Others:** Docker for containerization, Git for version control
+- **Others:** Git for version control
 
 
 ## 🖥️ Getting Started
